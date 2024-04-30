@@ -35,6 +35,10 @@ class Product(models.Model):
     updated_at = models.DateField(
         auto_now=True, verbose_name="Дата последнего изменения"
     )
+    manufactured_at = models.DateField(
+        verbose_name='Дата производства продукта',
+        help_text='Введите дату производства продукта'
+    )
 
     class Meta:
         verbose_name = "Продукт"
