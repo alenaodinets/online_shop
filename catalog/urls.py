@@ -7,8 +7,8 @@ from catalog.apps import CatalogConfig
 app_name = CatalogConfig.name
 
 urlpatterns = [
-    path("", prod_list, name='prod_list'),
-    path("catalog/<int:pk>/", prod_detail, name='prod_detail'),
+    path("", prod_list, name="prod_list"),
+    path("catalog/<int:pk>/", prod_detail, name="prod_detail"),
     path("home/", home),
     path("contacts/", contacts),
 ]
