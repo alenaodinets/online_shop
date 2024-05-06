@@ -1,0 +1,24 @@
+{% extends 'catalog/base.html' %}
+{% block content %}
+<dif class="container">
+    <dif class="row">
+        <dif class="col-6">
+            <form class="row" method="post" enctype="multipart/form-data">
+                <dif class="card">
+                    <dif class="card-body">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                    </dif>
+                    <button type="submit" class="btn btn-primary">
+                        {% if object %}
+                        Сохранить
+                        {% else %}
+                        Создать
+                        {% endif %}
+                    </button>
+                </dif>
+            </form>
+        </dif>
+    </dif>
+</dif>
+{% endblock%}

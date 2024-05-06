@@ -14,6 +14,8 @@
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
                   <a class="btn btn-primary" href="{% url 'catalog:prod_detail' prod.pk %}" role="button">Посмотреть</a>
+                  <a class="btn btn-primary" href="{% url 'catalog:prod_update' prod.pk %}" role="button">Редактировать</a>
+                  <a class="btn btn-primary" href="{% url 'catalog:prod_delete' prod.pk %}" role="button">Удалить</a>
                 </div>
                 <small class="text-body-secondary">9 mins</small>
               </div>
