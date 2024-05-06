@@ -14,5 +14,4 @@ urlpatterns = [
     path("catalog/create/", ProdCreateView.as_view(), name="prod_create"),
     path("catalog/<int:pk>/update/", ProdUpdateView.as_view(), name="prod_update"),
     path("catalog/<int:pk>/delete/", ProdDeleteView.as_view(), name="prod_delete"),
-
 ]

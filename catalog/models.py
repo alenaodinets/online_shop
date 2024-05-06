@@ -35,6 +35,7 @@ class Product(models.Model):
     updated_at = models.DateField(
         auto_now=True, verbose_name="Дата последнего изменения"
     )
+    views_counter = models.IntegerField(default=0, verbose_name="Счетчик просмотров")
 
     class Meta:
         verbose_name = "Продукт"
