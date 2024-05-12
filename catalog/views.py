@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.urls import reverse_lazy, reverse
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
-from catalog.models import Product, Blogpost
+from catalog.models import Product
 
 
 class ProdListView(ListView):
@@ -36,46 +36,6 @@ class ProdUpdateView(UpdateView):
 class ProdDeleteView(DeleteView):
     model = Product
     success_url = reverse_lazy("catalog:prod_list")
-
-
-class BlogPostListView(ListView):
-    model = Blogpost
-
-    def get_queryset(self, *args, **kwargs):
-        queryset = super().get_queryset()
-        queryset = queryset.filter(publication_sign=True)
-        return queryset
-
-
-class BlogPostDetailView(DetailView):
-    model = Blogpost
-
-
-class BlogPostCreateView(CreateView):
-    model = Blogpost
-    fields = ("title", "slug", "content", "preview")
-    success_url = reverse_lazy("catalog:blogpost_list")
-
-    def form_valid(self, form):
-        context = self.get_context_data()
-        formset = context['formset']
-        if form.is_valid() and formset.is_valid():
-            self.object = form.save()
-            formset.instance = self.object
-            formset.save()
-            return super().form_valid(form)
-        else:
-            return self.render_to_response(self.get_context_data(form=form, formset=formset))
-
-class BlogPostUpdateView(UpdateView):
-    model = Blogpost
-    fields = ("title", "slug", "content", "preview")
-    success_url = reverse_lazy("catalog:blogpost_list")
-
-
-class BlogPostDeleteView(DeleteView):
-    model = Blogpost
-    success_url = reverse_lazy("catalog:blogpost_list")
 
 
 def home(request):
