@@ -1,8 +1,9 @@
 from django.contrib import admin
-from catalog.models import Product, Category
-
+from catalog.models import Product, Category, Version
 
 # Register your models here.
+
+admin.site.register(Version)
 
 
 @admin.register(Product)
