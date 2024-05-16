@@ -19,21 +19,21 @@ class BlogPostDetailView(DetailView):
 class BlogPostCreateView(CreateView):
     model = Blogpost
     fields = ("title", "slug", "content", "preview")
-    success_url = reverse_lazy("blogpost:blogpost_form")
+    success_url = reverse_lazy("blogpost:blogpost_list")
 
-    def form_valid(self, form):
-        if form.is_valid():
-            new_blog = form.save()
-            new_blog.personal_manager = self.request.user
-            new_blog.save()
-
-        return super().form_valid(form)
+    # def form_valid(self, form):
+    #     if form.is_valid():
+    #         new_blog = form.save()
+    #         new_blog.personal_manager = self.request.user
+    #         new_blog.save()
+    #
+    #     return super().form_valid(form)
 
 
 class BlogPostUpdateView(UpdateView):
     model = Blogpost
     fields = ("title", "slug", "content", "preview")
-    success_url = reverse_lazy("blogpost:blogpost_form")
+    success_url = reverse_lazy("blogpost:blogpost_list")
 
 
 class BlogPostDeleteView(DeleteView):
