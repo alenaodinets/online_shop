@@ -11,6 +11,7 @@
             <div class="card-body">
               <p class="card-text">{{ prod.name }}</p>
               <p class="card-text">{{ prod.description | truncatechars:100 }}</p>
+              <p class="card-text"> Активная версия: {{ object.active_version }}</p>
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
                   <a class="btn btn-primary" href="{% url 'catalog:prod_detail' prod.pk %}" role="button">Посмотреть</a>

@@ -12,6 +12,20 @@ from catalog.models import Product, Version
 class ProdListView(ListView, LoginRequiredMixin):
     model = Product
 
+    def get_context_data(self, *args, **kwargs):
+        context_data = super().get_context_data(*args, **kwargs)
+        products = self.get_queryset(*args, **kwargs)
+        for product in products:
+            versions = Version.objects.filter(product=product)
+            is_active_version = versions.filter(is_active_version=True)
+            if is_active_version:
+                product.active_version = is_active_version.last().name_of_versions
+            else:
+                product.active_version = 'Нет активной версии'
+
+        context_data['object_list'] = products
+        return context_data
+
 
 class ProdDetailView(DetailView, LoginRequiredMixin):
     model = Product
