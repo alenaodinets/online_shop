@@ -18,14 +18,14 @@ class BlogPostDetailView(DetailView):
 
     def get_object(self, queryset=None):
         self.object = super().get_object(queryset)
-        self.object.view_count += 1
+        self.object.number_of_views += 1
         self.object.save()
         return self.object
 
 
 class BlogPostCreateView(CreateView):
     model = Blogpost
-    fields = ("title", "slug", "content", "preview")
+    fields = ("title", "content", "preview")
     success_url = reverse_lazy("blogpost:blogpost_list")
 
     def form_valid(self, form):
@@ -38,7 +38,7 @@ class BlogPostCreateView(CreateView):
 
 class BlogPostUpdateView(UpdateView):
     model = Blogpost
-    fields = ("title", "slug", "content", "preview")
+    fields = ("title", "content", "preview")
     success_url = reverse_lazy("blogpost:blogpost_list")
 
     def get_success_url(self):
