@@ -15,7 +15,9 @@
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
                   <a class="btn btn-primary" href="{% url 'catalog:prod_detail' prod.pk %}" role="button">Посмотреть</a>
+                  {% if user == prod.owner or perms.catalog.set_published and perms.catalog.change_description and perms.catalog.change_category %}
                   <a class="btn btn-primary" href="{% url 'catalog:prod_update' prod.pk %}" role="button">Редактировать</a>
+                  {% endif %}
                   <a class="btn btn-primary" href="{% url 'catalog:prod_delete' prod.pk %}" role="button">Удалить</a>
                 </div>
                 <small class="text-body-secondary">9 mins</small>

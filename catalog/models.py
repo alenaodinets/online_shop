@@ -1,5 +1,7 @@
 from django.db import models
 
+from users.models import User
+
 NULLABLE = {'blank': True, 'null': True}
 
 
@@ -38,11 +40,18 @@ class Product(models.Model):
         auto_now=True, verbose_name="Дата последнего изменения"
     )
     views_counter = models.IntegerField(default=0, verbose_name="Счетчик просмотров")
+    is_published = models.BooleanField(default=False, verbose_name='Опубликовано')
+    owner = models.ForeignKey(User, on_delete=models.SET_NULL, verbose_name='Владелец', **NULLABLE)
 
     class Meta:
         verbose_name = "Продукт"
         verbose_name_plural = "Продукты"
         ordering = ["category"]
+        permissions = [
+            ('set_published', 'Can publish product'),
+            ('change_description', 'Can change description'),
+            ('change_category', 'Can change category'),
+        ]
 
     def __str__(self):
         return self.name
