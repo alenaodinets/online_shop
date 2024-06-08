@@ -8,6 +8,7 @@ from django.views.generic import ListView, DetailView, CreateView, UpdateView, D
 
 from catalog.forms import ProductForm, VersionForm, ProductModeratorForm
 from catalog.models import Product, Version
+from catalog.sevices import get_products_from_cache
 
 
 class ProdListView(ListView, LoginRequiredMixin):
@@ -26,6 +27,9 @@ class ProdListView(ListView, LoginRequiredMixin):
 
         context_data['object_list'] = products
         return context_data
+
+    def get_queryset(self):
+        return get_products_from_cache()
 
 
 class ProdDetailView(DetailView, LoginRequiredMixin):
